@@ -40,7 +40,7 @@ class SmallBlueBalls {
     smallBlueBall[i].iDirection = 1;
     smallBlueBall[i].iTime2Go = 0;
   }
-
+  smallBlueBall[4].xStart = smallBlueBall[4].xStart + 0.3;  
   smallBlueBall[3].xStart = smallBlueBall[3].xStart + 0.5;
   smallBlueBall[5].xStart = smallBlueBall[5].xStart + 0.5;
   smallBlueBall[5].yStart = smallBlueBall[5].yStart + 0.5;

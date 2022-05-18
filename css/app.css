@@ -1,9 +1,13 @@
 .picture {
   width: 600px;
 }
-h2 {
-  color: blueviolet;
-  text-align: center;
+h1 {
+  color: rgb(75, 6, 139);
+  margin: 0 0 0 20px;
+  padding-left: 20px;
+}
+a {
+  text-decoration: none;
 }
 #canvas-bigOval {
   width: 470px;

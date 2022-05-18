@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 const myCanvas = document.getElementById("canvas-bigOval");
 myCanvas.width = 470;
 myCanvas.height = 470;
@@ -114,14 +114,15 @@ function drawCanvas(x, y, r, color, canvas) {
 
 function changeColorBigCircle() {
   extCircle.stepsAmount = 0 ;
-  let colorChange = extCircle.colorCircle;
+  //let colorChange = extCircle.colorCircle;
+  let colorChange = $('#color1').val();
 
   if (colorChange === color1) {
-    colorChange = color2;
+    //colorChange = color2;
     extCircle.colorCircle = colorChange;
     drawCanvas(extCircle.xCenter, extCircle.yCenter, extCircle.radius, colorChange, myCanvas);}
   else {
-      colorChange = color1;
+     // colorChange = color1;
       extCircle.colorCircle = colorChange;
       drawCanvas(extCircle.xCenter, extCircle.yCenter, extCircle.radius, colorChange, myCanvas);
     }
