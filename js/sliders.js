@@ -1,58 +1,58 @@
 document.getElementById('color1').addEventListener('change', colorBoxChanged);
 document.getElementById('color1').addEventListener('input', colorBoxChanged);
-document.getElementById('redSlyder').addEventListener('change', redSlyderChanged);
-document.getElementById('greenSlyder').addEventListener('change', greenSlyderChanged);
-document.getElementById('blueSlyder').addEventListener('change', blueSlyderChanged);
+document.getElementById('redSlider').addEventListener('change', redSliderChanged);
+document.getElementById('greenSlider').addEventListener('change', greenSliderChanged);
+document.getElementById('blueSlider').addEventListener('change', blueSliderChanged);
 
-function redSlyderChanged() {
-    const redSlyderValue = $('#redSlyder').val();
+function redSliderChanged() {
+    const redSliderValue = $('#redSlider').val();
     const colorBox = $('#color1');
     const oldColor = colorBox.val();
     //console.log('вызов при изменеии Слайдера: ');
     //console.log(oldColor);
-    let redHex =String(Number(redSlyderValue).toString(16));
+    let redHex = String(Number(redSliderValue).toString(16));
     //console.log(redHex, redHex.length);
     if (redHex.length === 1) {
         redHex = '0' + redHex;
     } else if (redHex.length === 0) {
         redHex = '00';
     }
-    let color='#'+ redHex + oldColor.substring(3);
+    let color = '#' + redHex + oldColor.substring(3);
     //console.log('новое значение цвета: #'+ redHex + oldColor.substring(3));
     colorBox.val(color);
-    colorBox.css('background-color',color);
-    //colorBox.trigger('change');
-    //console.log( $.farbtastic('#colorpicker1'));
+    colorBox.css('background-color', color);
     $.farbtastic('#colorpicker1').setColor(color);
+    $('#rLabel').text(redSliderValue);
 }
-function greenSlyderChanged() {
-    const greenSlyderValue = $('#greenSlyder').val();
+
+function greenSliderChanged() {
+    const greenSliderValue = $('#greenSlider').val();
     const colorBox = $('#color1');
     const oldColor = colorBox.val();
     //console.log('вызов при изменеии Слайдера GREEN: ');
     //console.log(oldColor);
-    let greenHex =String(Number(greenSlyderValue).toString(16));
+    let greenHex = String(Number(greenSliderValue).toString(16));
     //console.log(redHex, redHex.length);
     if (greenHex.length === 1) {
         greenHex = '0' + greenHex;
     } else if (greenHex.length === 0) {
         greenHex = '00';
     }
-    let color = oldColor.substring(0,3) + greenHex + oldColor.substring(5);
+    let color = oldColor.substring(0, 3) + greenHex + oldColor.substring(5);
     //console.log('новое значение цвета: '+ oldColor.substring(0,3) + greenHex + oldColor.substring(5));
     colorBox.val(color);
-    colorBox.css('background-color',color);
-    //colorBox.trigger('change');
-    //console.log( $.farbtastic('#colorpicker1'));
+    colorBox.css('background-color', color);
     $.farbtastic('#colorpicker1').setColor(color);
+    $('#gLabel').text(greenSliderValue);
 }
-function blueSlyderChanged() {
-    const blueSlyderValue = $('#blueSlyder').val();
+
+function blueSliderChanged() {
+    const blueSliderValue = $('#blueSlider').val();
     const colorBox = $('#color1');
     const oldColor = colorBox.val();
     //console.log('вызов при изменеии Слайдера BLUE: ');
     //console.log(oldColor);
-    let blurHex =String(Number(blueSlyderValue).toString(16));
+    let blurHex = String(Number(blueSliderValue).toString(16));
     //console.log(redHex, redHex.length);
     if (blurHex.length === 1) {
         blurHex = '0' + blurHex;
@@ -63,21 +63,18 @@ function blueSlyderChanged() {
     //console.log('новое значение цвета: '+ oldColor.substring(0,5) + blurHex);
     colorBox.val(color);
     colorBox.css('background-color',color);
-    //colorBox.trigger('change');
-    //console.log( $.farbtastic('#colorpicker1'));
     $.farbtastic('#colorpicker1').setColor(color);
+    $('#bLabel').text(blueSliderValue);
 }
 function colorBoxChanged() {
     //console.log("вызов при изменеии")
-    let redSl = $('#redSlyder');
+    let redSl = $('#redSlider');
     let valueColorBox = redSl.val();
-    //console.log(valueColorBox);
-    //console.log(hex2rgb(valueColorBox).r);
-    //console.log('значение слайдера '+ redSl.val());
+
     redSl.val(hex2rgb(valueColorBox).r);
-    $('#greenSlyder').val(hex2rgb(valueColorBox).g);
-    $('#blueSlyder').val(hex2rgb(valueColorBox).b);
-    //console.log('новое значение слайдера RED '+ redSl.val());
+    $('#greenSlider').val(hex2rgb(valueColorBox).g);
+    $('#blueSlider').val(hex2rgb(valueColorBox).b);
+
 }
 
 function hex2rgb(c) {

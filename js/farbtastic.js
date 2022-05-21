@@ -99,11 +99,9 @@ $._farbtastic = function (container, options) {
       .find('div>*').css('position', 'absolute');
 
     // IE Fix: Recreate canvas elements with doc.createElement and excanvas.
-    $.browser.msie || false ;
-
-    /*&& $('canvas', container).each(function () {
+    $.browser.msie || false && $('canvas', container).each(function () {
       // Fetch info.
-      let attr = { 'class': $(this).attr('class'), style: this.getAttribute('style') },
+      let attr = {'class': $(this).attr('class'), style: this.getAttribute('style')},
           e = document.createElement('canvas');
       // Replace element.
       $(this).before($(e).attr(attr)).remove();
@@ -111,8 +109,8 @@ $._farbtastic = function (container, options) {
       G_vmlCanvasManager && G_vmlCanvasManager.initElement(e);
       // Set explorerCanvas elements dimensions and absolute positioning.
       $(e).attr(dim).css(dim).css('position', 'absolute')
-        .find('*').attr(dim).css(dim);
-    });*/
+          .find('*').attr(dim).css(dim);
+    });
 
     // Determine layout
     fb.radius = (options.width - options.wheelWidth) / 2 - 1;
@@ -359,10 +357,10 @@ $._farbtastic = function (container, options) {
       $(fb.callback).each(function() {
         if ((typeof this.value == 'string') && this.value !== fb.color) {
           this.value = fb.color;
-          console.log("смена цвета "  + fb.color);
-          $('#redSlyder').val(hex2rgb(fb.color).r);
-          $('#greenSlyder').val(hex2rgb(fb.color).g);
-          $('#blueSlyder').val(hex2rgb(fb.color).b);
+          console.log("смена цвета " + fb.color);
+          $('#redSlider').val(hex2rgb(fb.color).r);
+          $('#greenSlider').val(hex2rgb(fb.color).g);
+          $('#blueSlider').val(hex2rgb(fb.color).b);
         }
       }).change();
     }
@@ -465,8 +463,11 @@ $._farbtastic = function (container, options) {
   };
 
   fb.HSLToRGB = function (hsl) {
-    let m1, m2; //, r, g, b
-    let h = hsl[0], s = hsl[1], l = hsl[2];
+    let m1;
+    let m2;
+    let h = hsl[0];
+    let s = hsl[1];
+    let l = hsl[2];
     m2 = (l <= 0.5) ? l * (s + 1) : l + s - l * s;
     m1 = l * 2 - m2;
     return [
@@ -529,3 +530,4 @@ $._farbtastic = function (container, options) {
 }
 
 })(jQuery);
+// export {unpack, RGBToHSL};

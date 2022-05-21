@@ -1,13 +1,10 @@
-//import {xBigOvl as xBigOval2 } from './canvas'
-
 const xBigOval2 = 235;
-//const yBigOval2 = 235;
 const space2 = 12.5;    // зазор между квадратом и кругом
 const rBigOval2 = xBigOval2 - space2; // радиус большого круга
 const rSmallBlue2 = 10; // радиус маленького синего шара
 
 
-class SmallBlueBalls {
+class Smallblueballs {
     #id;                  // id of the Object
     color = '#0000ff';     // color of the Object
     iStart = false;        // true is in motion
@@ -29,16 +26,16 @@ class SmallBlueBalls {
   let smallBlueBall = new Array(8);
 
   for (let i = 0; i < 8; i++) {
-    smallBlueBall[i] = new SmallBlueBalls(i);
-    smallBlueBall[i].xStart = Math.trunc(rBigOval2 + space2 - (rBigOval2 - rSmallBlue2) * Math.sin(pi * i / 8)) +0.5;
-    smallBlueBall[i].yStart = Math.trunc(rSmallBlue2 + space2   + (rBigOval2 - rSmallBlue2) * (1 - Math.cos(pi * i / 8))) +0.5;
-    smallBlueBall[i].xStop = Math.trunc( rBigOval2 + space2 - (rBigOval2 - rSmallBlue2) * Math.sin(pi * i / 8 + pi)) +0.5;
-    smallBlueBall[i].yStop = Math.trunc( rSmallBlue2 + space2 + (rBigOval2 - rSmallBlue2) * (1 - Math.cos(pi * i / 8 + pi))) +0.5;
-    smallBlueBall[i].iStart = false;
-    smallBlueBall[i].xCurrent = 0;
-    smallBlueBall[i].yCurrent = 0;
-    smallBlueBall[i].iDirection = 1;
-    smallBlueBall[i].iTime2Go = 0;
+      smallBlueBall[i] = new Smallblueballs(i);
+      smallBlueBall[i].xStart = Math.trunc(rBigOval2 + space2 - (rBigOval2 - rSmallBlue2) * Math.sin(pi * i / 8)) + 0.5;
+      smallBlueBall[i].yStart = Math.trunc(rSmallBlue2 + space2 + (rBigOval2 - rSmallBlue2) * (1 - Math.cos(pi * i / 8))) + 0.5;
+      smallBlueBall[i].xStop = Math.trunc(rBigOval2 + space2 - (rBigOval2 - rSmallBlue2) * Math.sin(pi * i / 8 + pi)) + 0.5;
+      smallBlueBall[i].yStop = Math.trunc(rSmallBlue2 + space2 + (rBigOval2 - rSmallBlue2) * (1 - Math.cos(pi * i / 8 + pi))) + 0.5;
+      smallBlueBall[i].iStart = false;
+      smallBlueBall[i].xCurrent = 0;
+      smallBlueBall[i].yCurrent = 0;
+      smallBlueBall[i].iDirection = 1;
+      smallBlueBall[i].iTime2Go = 0;
   }
   smallBlueBall[4].xStart = smallBlueBall[4].xStart + 0.3;  
   smallBlueBall[3].xStart = smallBlueBall[3].xStart + 0.5;
@@ -63,7 +60,6 @@ function nextStep(i, xOval, yOval, rOval) {
   // position of the ball
   let x = smallBlueBall[i].xCurrent;
   let y = smallBlueBall[i].yCurrent;
-  //let way = smallBlueBall[i].iDirection;
   let step;
   let position = distFromPoint(x, xOval, y, yOval);
   let r1 = rClosest(rOval);
@@ -90,38 +86,37 @@ function newPositionBall(xBigO, yBigO, R) {
   for (let i = 0; i < 8; i++) {
 
     if (!!smallBlueBall[i].iStart) {            // false - ball is still
-      let step = nextStep(i, xBigO, yBigO, R);
-      step = Math.fround(step * 100) / 100;
-      let xPosition = smallBlueBall[i].xCurrent;
-      let yPosition = smallBlueBall[i].yCurrent;
-      let angle = i * Math.PI / 8;
-      let isLast = isLastStep(step, i, R); // проверить, что это не последний шаг
-      let way = smallBlueBall[i].iDirection;
-      let xPositionNew;
-      let yPositionNew;
-      //isLast = false;
-      console.log(isLast + " way = " + way);
-      //step = step * way;
-      console.log("след.шаг = " + step);
-      if (way === 1) {
-        if (!isLast) {
-          xPositionNew = xPosition + step * Math.sin(angle);
-          yPositionNew = yPosition + step * Math.cos(angle);
-        } else {
-          xPositionNew = smallBlueBall[i].xStop;
-          yPositionNew = smallBlueBall[i].yStop;
-          smallBlueBall[i].iDirection = -1;
-        }
+        let step = nextStep(i, xBigO, yBigO, R);
+        step = Math.fround(step * 100) / 100;
+        let xPosition = smallBlueBall[i].xCurrent;
+        let yPosition = smallBlueBall[i].yCurrent;
+        let angle = i * Math.PI / 8;
+        let isLast = isLastStep(step, i, R); // проверить, что это не последний шаг
+        let way = smallBlueBall[i].iDirection;
+        let xPositionNew;
+        let yPositionNew;
 
-      } else {
-        if (!isLast) {
-          xPositionNew = xPosition + step * Math.sin(angle);
-          yPositionNew = yPosition + step * Math.cos(angle);
+        //console.log(isLast + " way = " + way);
+        //console.log("след.шаг = " + step);
+        if (way === 1) {
+            if (!isLast) {
+                xPositionNew = xPosition + step * Math.sin(angle);
+                yPositionNew = yPosition + step * Math.cos(angle);
+            } else {
+                xPositionNew = smallBlueBall[i].xStop;
+                yPositionNew = smallBlueBall[i].yStop;
+                smallBlueBall[i].iDirection = -1;
+            }
+
         } else {
-          xPositionNew = smallBlueBall[i].xStart;
-          yPositionNew = smallBlueBall[i].yStart;
-          smallBlueBall[i].iDirection = 1;
-        }
+            if (!isLast) {
+                xPositionNew = xPosition + step * Math.sin(angle);
+                yPositionNew = yPosition + step * Math.cos(angle);
+            } else {
+                xPositionNew = smallBlueBall[i].xStart;
+                yPositionNew = smallBlueBall[i].yStart;
+                smallBlueBall[i].iDirection = 1;
+            }
       }
       console.log("x = " + xPositionNew + "  y = " + yPositionNew);
       smallBlueBall[i].xCurrent = xPositionNew;

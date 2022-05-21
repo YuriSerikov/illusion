@@ -1,11 +1,17 @@
-h1 {
-  font-family: 'Lucida Grande', 'Lucida Unicode', 'Lucida Sans', sans-serif;
-  font-size: 36px;
-  padding: 5px 2px;
-  margin: 0 40px 40px 40px;
+root {
+    --tumb-outline-color: #4f6575;
+    --tumb-background-color: #5cd5eb;
 }
+
+h1 {
+    font-family: 'Lucida Grande', 'Lucida Unicode', 'Lucida Sans', sans-serif;
+    font-size: 36px;
+    padding: 5px 2px;
+    margin: 0 40px 40px 40px;
+}
+
 body {
-  width: 1000px;
+    width: 1000px;
 }
 .container {
   width: 600px;
@@ -21,106 +27,155 @@ body {
   width: 300px;
 }
 #colorbox {
-  position: absolute;
-  top: 50px;
-  left: 300px;
-  display: block;
-  width: 350px;
-  height: 150px;
-  margin: 20px 20px;
+    position: absolute;
+    top: 440px;
+    left: 30px;
+    display: block;
+    width: 350px;
+    height: 100px;
+    margin: 10px 20px;
 }
 #color1 {
-  border: none;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 40px;
-  font-weight: bold;
-  width: 200px;
-  margin: 30px 30px;
-  padding: 40px 10px 40px 10px;
-  box-shadow: 3px 3px 10px darkgray;
-  text-shadow: 2px 1px #090d18;
-  text-align: center;
+    border: none;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+    font-weight: bold;
+    width: 200px;
+    margin: 20px 20px 0 30px;
+    padding: 20px 10px 20px 10px;
+    box-shadow: 3px 3px 10px darkgray;
+    text-shadow: 2px 1px #090d18;
+    text-align: center;
 }
-#colorSlyders {
-  position: absolute;
-  top: 350px;
-  left: 10px;
-  width: 400px;
-  height: 250px;
+
+#colorSliders {
+    position: absolute;
+    top: 340px;
+    left: 10px;
+    width: 400px;
+    height: 250px;
 }
-.slyder {
-  -webkit-appearance: none;
-  background: transparent;
-  width: 300px;
-  height: 7px;
-  margin: 10px 20px 15px 30px;
-  cursor: pointer;
-  clear: both;
+
+.slider {
+    -webkit-appearance: none;
+    background: transparent;
+    width: 300px;
+    height: 23px;
+    margin: 0 20px 15px 30px;
+    cursor: pointer;
+    clear: both;
+    overflow: hidden;
+    border-radius: 7px;
 }
+
 /***** Стили дорожки *****/
 /***** Chrome, Safari, Opera и Edge Chromium *****/
-.slyder::-webkit-slider-runnable-track {
-  height: 8px;
-  border: none;
+.slider::-webkit-slider-runnable-track {
+    height: 22px;
+    border: none;
+    background: #dbdbe5;
 }
-#redSlyder::-webkit-slider-runnable-track {
-  background: #ff0000;
-}
-#greenSlyder::-webkit-slider-runnable-track {
-  background: #00ff00;
-}
-#blueSlyder::-webkit-slider-runnable-track {
-  background: #0000ff;
-}
-.slyder::-ms-fill-upper {
-  background-color: #e0c1b5;
+
+.slider::-ms-fill-upper {
+    background-color: #e0c1b5;
 }
 
 /******** Firefox ********/
-.slyder::-moz-range-track {
-  height: 8px;
-  border: none;
-}
-.slyder::-moz-range-progress {
-  background-color: #e0c1b5;
-}
-#redSlyder::-moz-range-track {
-  background: #ff0000;
+.slider::-moz-range-track {
+    height: 22px;
+    border: none;
 }
 
-#greenSlyder::-moz-range-track {
-  background: #00ff00;
+.slider::-moz-range-progress {
+    background-color: #e0c1b5;
 }
-#blueSlyder::-moz-range-track {
-  background: #0000ff;
+
+#redSlider::-moz-range-track {
+    background: #ff0000;
 }
-.slyder::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  height: 20px;
-  width: 30px;
-  background-color: #5cd5eb;
-  margin-top: -6px;
-  border-radius: 20%;
+
+#greenSlider::-moz-range-track {
+    background: #00ff00;
 }
-.slyder::-moz-range-thumb {
-  height: 20px;
-  width: 30px;
-  background-color: #5cd5eb;
-  border: none;
+
+#blueSlider::-moz-range-track {
+    background: #0000ff;
 }
+
+/****** стили ползунка ******/
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 22px;
+    width: 30px;
+
+    background-color: #7a7d7e;
+    background: linear-gradient(#7a7a7a, #5cd5eb, #7a7a7a);
+    margin-top: 0.5px;
+    border-radius: 20%;
+}
+
+.slider::-moz-range-thumb {
+    height: 22px;
+    width: 30px;
+    background: linear-gradient(#7a7a7a, #5cd5eb, #7a7a7a);
+    border: none;
+    border-radius: 20%;
+}
+
+#redSlider::-webkit-slider-thumb {
+    box-shadow: -200px 0 0 200px #fc0909;
+}
+
+#greenSlider::-webkit-slider-thumb {
+    box-shadow: -200px 0 0 200px #00ff00;
+}
+
+#blueSlider::-webkit-slider-thumb {
+    box-shadow: -200px 0 0 200px #0000ff;
+}
+
 /***** Стили фокусировки *****/
 /* Удаляем фокус по умолчанию */
-.slyder:focus {
-  outline: none;
-  border: 1px solid #053a5f;
+.slider:focus {
+    outline: none;
 }
+
 /***** Chrome, Safari, Opera и Edge Chromium *****/
-.slyder:focus::-webkit-slider-thumb {
-  outline: 3px solid #053a5f;
-  outline-offset: 1px;
+.slider:focus::-webkit-slider-thumb {
+    outline: 2px solid var(--tumb-outline-color);
+    background: linear-gradient(#080808, #5cd5eb, #080808);
 }
+
 /******** Firefox ********/
-.slyder:focus::-moz-range-thumb {
-  outline: 3px solid #053a5f;
-  outline-offset: 1px;
+.slider:focus::-moz-range-thumb {
+    outline: 2px solid var(--tumb-outline-color);
+    background: linear-gradient(#080808, #5cd5eb, #080808);
+}
+
+.label {
+    outline: none;
+    border: none;
+    width: 30px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: rgba(93, 92, 92, 0.78);
+}
+
+#bLabel {
+    position: absolute;
+    top: 82px;
+    left: 0;
+}
+
+#gLabel {
+    position: absolute;
+    top: 41px;
+    left: 0;
+}
+
+#rLabel {
+    position: absolute;
+    top: 2px;
+    left: 0;
 }
