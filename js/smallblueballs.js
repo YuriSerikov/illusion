@@ -96,8 +96,6 @@ function newPositionBall(xBigO, yBigO, R) {
         let xPositionNew;
         let yPositionNew;
 
-        //console.log(isLast + " way = " + way);
-        //console.log("след.шаг = " + step);
         if (way === 1) {
             if (!isLast) {
                 xPositionNew = xPosition + step * Math.sin(angle);
@@ -118,7 +116,7 @@ function newPositionBall(xBigO, yBigO, R) {
                 smallBlueBall[i].iDirection = 1;
             }
       }
-      console.log("x = " + xPositionNew + "  y = " + yPositionNew);
+    
       smallBlueBall[i].xCurrent = xPositionNew;
       smallBlueBall[i].yCurrent = yPositionNew;
     }
@@ -140,7 +138,7 @@ function isLastStep(step, i, rOval) {
     let y1 = smallBlueBall[i].yStop;
     r = distFromPoint(x, x1, y, y1) +  Math.abs(step);
   }
-  console.log("distance: " + r);
+  
     return r > rOval * 2;
 }
 

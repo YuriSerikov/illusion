@@ -357,7 +357,7 @@ $._farbtastic = function (container, options) {
       $(fb.callback).each(function() {
         if ((typeof this.value == 'string') && this.value !== fb.color) {
           this.value = fb.color;
-          console.log("смена цвета " + fb.color);
+         
           $('#redSlider').val(hex2rgb(fb.color).r);
           $('#greenSlider').val(hex2rgb(fb.color).g);
           $('#blueSlider').val(hex2rgb(fb.color).b);
@@ -369,7 +369,7 @@ $._farbtastic = function (container, options) {
     }
   }
 
-  /**
+  /*
    * Helper for returning coordinates relative to the center.
    */
   fb.widgetCoords = function (event) {

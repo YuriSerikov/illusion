@@ -7,57 +7,57 @@ h1 {
   padding-left: 20px;
 }
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 #canvas-bigOval {
-    width: 470px;
-    height: 470px;
-    margin: 0 30px 10px 30px;
-    border: 2px solid rgb(233, 166, 119);
-    /*  background: transparent;*/
-    background-color: rgb(240, 228, 211);
+  width: 470px;
+  height: 470px;
+  margin: 0 30px 10px 30px;
+  border: 2px solid rgb(233, 166, 119);
+  /*  background: transparent;*/
+  background-color: rgb(240, 228, 211);
 }
 
 .btn {
-    outline: none;
-    text-decoration: none;
-    border: none;
-    width: 145px;
-    height: 45px;
-    margin: 10px 1px;
-    text-align: center;
-    line-height: 40px;
-    font-family: Cambria, serif;
-    font-weight: bold;
-    font-size: 20px;
-    border-radius: 7px;
-    background: linear-gradient(
-            rgb(165, 240, 240),
-            LightCyan,
-            rgb(155, 240, 240)
-    );
-    text-shadow: 0 1px rgba(255, 255, 255, 0.2), 0 -1px rgba(0, 0, 0, 0.8);
-    cursor: pointer;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
-    transition: 0.3s;
+  outline: none;
+  text-decoration: none;
+  border: none;
+  width: 145px;
+  height: 45px;
+  margin: 10px 1px;
+  text-align: center;
+  line-height: 40px;
+  font-family: Cambria, serif;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 7px;
+  background: linear-gradient(
+    rgb(165, 240, 240),
+    LightCyan,
+    rgb(155, 240, 240)
+  );
+  text-shadow: 0 1px rgba(255, 255, 255, 0.2), 0 -1px rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+  transition: 0.3s;
 }
 
 .buttons {
-    width: 250px;
-    margin-left: 30px;
-    display: inline-block;
+  width: 250px;
+  margin-left: 30px;
+  display: inline-block;
 }
 
 #ColorBtn {
-    position: absolute;
-    top: 550px;
+  position: absolute;
+  top: 550px;
 }
 
 #StartBtn {
-    position: absolute;
-    top: 550px;
-    left: 201px;
+  position: absolute;
+  top: 550px;
+  left: 201px;
 }
 #StopBtn {
   position: absolute;
@@ -66,36 +66,12 @@ a {
 }
 
 button:hover {
-    color: rgb(38, 8, 122);
-    background-color: rgb(96, 184, 157);
-    box-shadow: 0 10px 10px rgba(40, 229, 157, 0.2);
-    transform: translateY(-7px);
+  color: rgb(38, 8, 122);
+  background-color: rgb(96, 184, 157);
+  box-shadow: 0 10px 10px rgba(40, 229, 157, 0.2);
+  transform: translateY(-7px);
 }
 
 button:active {
-    color: brown;
-}
-
-#sampleball {
-    outline: none;
-    border: none;
-    position: absolute;
-    top: 560px;
-}
-
-#colorBall {
-    outline: none;
-    border: none;
-    position: absolute;
-    left: 550px;
-    width: 45px;
-    height: 45px;
-    background: rgb(75, 28, 161);
-    border-radius: 50%;
-    background: linear-gradient(
-            120deg,
-            rgb(251, 251, 251),
-            rgb(75, 28, 161),
-            rgb(0, 0, 0)
-    );
+  color: brown;
 }
