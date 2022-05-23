@@ -19,10 +19,10 @@ $._farbtastic = function (container, options) {
 
   /////////////////////////////////////////////////////
 
-  /**
+  /*
    * Link to the given element(s) or callback.
    */
-  fb.linkTo = function (callback) {
+  fb.linkTo = (callback) => {
     // Unbind previous nodes
     if (typeof fb.callback == 'object') {
       $(fb.callback).unbind('keyup', fb.updateValue);
@@ -45,15 +45,13 @@ $._farbtastic = function (container, options) {
     return this;
   }
   fb.updateValue = function () {
-    if (this.value && this.value !== fb.color) {
-      fb.setColor(this.value);
-    }
+    (this.value && this.value !== fb.color) ? fb.setColor(this.value) : '';
   }
 
-  /**
+  /*
    * Change color with HTML syntax #123456
    */
-  fb.setColor = function (color) {
+  fb.setColor = (color) => {
     const unpack = fb.unpack(color);
     if (fb.color !== color && unpack) {
       fb.color = color;
@@ -64,10 +62,10 @@ $._farbtastic = function (container, options) {
     return this;
   }
 
-  /**
+  /*
    * Change color with HSL triplet [0..1, 0..1, 0..1]
    */
-  fb.setHSL = function (hsl) {
+  fb.setHSL = (hsl) => {
     fb.hsl = hsl;
     fb.rgb = fb.HSLToRGB(hsl);
     fb.color = fb.pack(fb.rgb);
@@ -77,10 +75,10 @@ $._farbtastic = function (container, options) {
 
   /////////////////////////////////////////////////////
 
-  /**
+  /*
    * Initialize the color picker widget.
    */
-  fb.initWidget = function () {
+  fb.initWidget = () => {
     let dimS = options.width;
     // Insert markup and size accordingly.
     const dim = {
@@ -88,13 +86,13 @@ $._farbtastic = function (container, options) {
       height: dimS
     };
     $(container)
-      .html(
-        '<div class="farbtastic" style="position: relative">' +
-          '<div class="farbtastic-solid"></div>' +
-          '<canvas class="farbtastic-mask"></canvas>' +
-          '<canvas class="farbtastic-overlay"></canvas>' +
-        '</div>'
-      )
+        .html(
+            '<div class="farbtastic" style="position: relative">' +
+            '<div class="farbtastic-solid"></div>' +
+            '<canvas class="farbtastic-mask"></canvas>' +
+            '<canvas class="farbtastic-overlay"></canvas>' +
+            '</div>'
+        )
       .find('*').attr(dim).css(dim).end()
       .find('div>*').css('position', 'absolute');
 
@@ -140,7 +138,7 @@ $._farbtastic = function (container, options) {
   /*
    * Draw the color wheel.
    */
-  fb.drawCircle = function () {
+  fb.drawCircle = () => {
     let tm = +(new Date());
     // Draw a hue circle with a bunch of gradient-stroked beziers.
     // Have to use beziers, as gradient-stroked arcs don't work.
@@ -150,7 +148,7 @@ $._farbtastic = function (container, options) {
         nudge = 8 / r / n * Math.PI, // Fudge factor for seams.
         m = fb.ctxMask,
         angle1 = 0;
-         //d1;
+    //d1;
     let color1 = "#ffffff";
     m.save();
     m.lineWidth = w / r;
@@ -217,11 +215,12 @@ $._farbtastic = function (container, options) {
   /**
    * Draw the saturation/luminance mask.
    */
-  fb.drawMask = function () {
+  fb.drawMask = () => {
     let tm = +(new Date());
 
     // Iterate over sat/lum space and calculate appropriate mask pixel values.
     let size = fb.square * 2, sq = fb.square;
+
     function calculateMask(sizex, sizey, outputPixel) {
       let isx = 1 / sizex, isy = 1 / sizey;
       for (let y = 0; y <= sizey; ++y) {
@@ -303,21 +302,21 @@ $._farbtastic = function (container, options) {
   /**
    * Draw the selection markers.
    */
-  fb.drawMarkers = function () {
+  fb.drawMarkers = () => {
     // Determine marker dimensions
     let sz = options.width, lw = Math.ceil(fb.markerSize / 4), r = fb.markerSize - lw + 1;
     let angle = fb.hsl[0] * 6.28,
-        x1 =  Math.sin(angle) * fb.radius,
+        x1 = Math.sin(angle) * fb.radius,
         y1 = -Math.cos(angle) * fb.radius,
         x2 = 2 * fb.square * (.5 - fb.hsl[1]),
         y2 = 2 * fb.square * (.5 - fb.hsl[2]),
         c1 = fb.invert ? '#fff' : '#000',
         c2 = fb.invert ? '#000' : '#fff';
     let circles = [
-      { x: x1, y: y1, r: r,             c: '#000', lw: lw + 1 },
-      { x: x1, y: y1, r: fb.markerSize, c: '#fff', lw: lw },
-      { x: x2, y: y2, r: r,             c: c2,     lw: lw + 1 },
-      { x: x2, y: y2, r: fb.markerSize, c: c1,     lw: lw },
+      {x: x1, y: y1, r: r, c: '#000', lw: lw + 1},
+      {x: x1, y: y1, r: fb.markerSize, c: '#fff', lw: lw},
+      {x: x2, y: y2, r: r, c: c2, lw: lw + 1},
+      {x: x2, y: y2, r: fb.markerSize, c: c1, lw: lw},
     ];
 
     // Update the overlay canvas.
@@ -335,7 +334,7 @@ $._farbtastic = function (container, options) {
   /**
    * Update the markers and styles
    */
-  fb.updateDisplay = function () {
+  fb.updateDisplay = () => {
     // Determine whether labels/markers should invert.
     fb.invert = (fb.rgb[0] * 0.3 + fb.rgb[1] * .59 + fb.rgb[2] * .11) <= 0.6;
 
@@ -372,17 +371,17 @@ $._farbtastic = function (container, options) {
   /*
    * Helper for returning coordinates relative to the center.
    */
-  fb.widgetCoords = function (event) {
+  fb.widgetCoords = event => {
     return {
       x: event.pageX - fb.offset.left - fb.mid,
       y: event.pageY - fb.offset.top - fb.mid
     };
   }
 
-  /**
+  /*
    * Mousedown handler
    */
-  fb.mousedown = function (event) {
+  fb.mousedown = event => {
     // Capture mouse
     if (!$._farbtastic.dragging) {
       $(document).bind('mousemove', fb.mousemove).bind('mouseup', fb.mouseup);
@@ -401,10 +400,10 @@ $._farbtastic = function (container, options) {
     return false;
   }
 
-  /**
+  /*
    * Mousemove handler
    */
-  fb.mousemove = function (event) {
+  fb.mousemove = event => {
     // Get coordinates relative to color picker center
     let pos = fb.widgetCoords(event);
 
@@ -412,8 +411,7 @@ $._farbtastic = function (container, options) {
     if (fb.circleDrag) {
       let hue = Math.atan2(pos.x, -pos.y) / 6.28;
       fb.setHSL([(hue + 1) % 1, fb.hsl[1], fb.hsl[2]]);
-    }
-    else {
+    } else {
       let sat = Math.max(0, Math.min(1, -(pos.x / fb.square / 2) + .5));
       let lum = Math.max(0, Math.min(1, -(pos.y / fb.square / 2) + .5));
       fb.setHSL([fb.hsl[0], sat, lum]);
@@ -424,7 +422,7 @@ $._farbtastic = function (container, options) {
   /**
    * Mouseup handler
    */
-  fb.mouseup = function () {
+  fb.mouseup = () => {
     // Uncapture mouse
     $(document).unbind('mousemove', fb.mousemove);
     $(document).unbind('mouseup', fb.mouseup);
@@ -432,37 +430,29 @@ $._farbtastic = function (container, options) {
   }
 
   /* Various color utility functions */
-  fb.dec2hex = function (x) {
-    return (x < 16 ? '0' : '') + x.toString(16);
-  }
+  fb.dec2hex = (x) => (x < 16 ? '0' : '') + x.toString(16);
 
-  fb.packDX = function (c, a) {
-    return '#' + fb.dec2hex(a) + fb.dec2hex(c) + fb.dec2hex(c) + fb.dec2hex(c);
-  };
+  fb.packDX = (c, a) => '#' + fb.dec2hex(a) + fb.dec2hex(c) + fb.dec2hex(c) + fb.dec2hex(c);
 
-  fb.pack = function (rgb) {
+  fb.pack = (rgb) => {
     let r = Math.round(rgb[0] * 255);
     let g = Math.round(rgb[1] * 255);
     let b = Math.round(rgb[2] * 255);
     return '#' + fb.dec2hex(r) + fb.dec2hex(g) + fb.dec2hex(b);
   };
 
-  fb.unpack = function (color) {
+  fb.unpack = (color) => {
     if (color.length === 7) {
-      function x7(i) {
-        return parseInt(color.substring(i, i + 2), 16) / 255;
-      }
-      return [ x7(1), x7(3), x7(5) ];
+      x7 = (i) => parseInt(color.substring(i, i + 2), 16) / 255;
+      return [x7(1), x7(3), x7(5)];
     }
-    else if (color.length === 4) {
-      function x4(i) {
-        return parseInt(color.substring(i, i + 1), 16) / 15;
-      }
-      return [ x4(1), x4(2), x4(3) ];
+    if (color.length === 4) {
+      x4 = (i) => parseInt(color.substring(i, i + 1), 16) / 15;
+      return [x4(1), x4(2), x4(3)];
     }
   };
 
-  fb.HSLToRGB = function (hsl) {
+  fb.HSLToRGB = (hsl) => {
     let m1;
     let m2;
     let h = hsl[0];
@@ -477,7 +467,7 @@ $._farbtastic = function (container, options) {
     ];
   };
 
-  fb.hueToRGB = function (m1, m2, h) {
+  fb.hueToRGB = (m1, m2, h) => {
     h = (h + 1) % 1;
     if (h * 6 < 1) return m1 + (m2 - m1) * h * 6;
     if (h * 2 < 1) return m2;
@@ -485,7 +475,7 @@ $._farbtastic = function (container, options) {
     return m1;
   };
 
-  fb.RGBToHSL = function (rgb) {
+  fb.RGBToHSL = (rgb) => {
     let r = rgb[0], g = rgb[1], b = rgb[2],
         min = Math.min(r, g, b),
         max = Math.max(r, g, b),
@@ -530,4 +520,3 @@ $._farbtastic = function (container, options) {
 }
 
 })(jQuery);
-// export {unpack, RGBToHSL};

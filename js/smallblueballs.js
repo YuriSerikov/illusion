@@ -37,44 +37,40 @@ class Smallblueballs {
       smallBlueBall[i].iDirection = 1;
       smallBlueBall[i].iTime2Go = 0;
   }
-  smallBlueBall[4].xStart = smallBlueBall[4].xStart + 0.3;  
-  smallBlueBall[3].xStart = smallBlueBall[3].xStart + 0.5;
-  smallBlueBall[5].xStart = smallBlueBall[5].xStart + 0.5;
-  smallBlueBall[5].yStart = smallBlueBall[5].yStart + 0.5;
-  smallBlueBall[7].yStart = smallBlueBall[7].yStart + 0.5;
-  smallBlueBall[1].yStop = smallBlueBall[1].yStop + 0.5;
-  smallBlueBall[3].yStop = smallBlueBall[3].yStop + 1;
-  smallBlueBall[5].yStop = smallBlueBall[5].yStop - 0.5;
+smallBlueBall[4].xStart = smallBlueBall[4].xStart + 0.3;
+smallBlueBall[3].xStart = smallBlueBall[3].xStart + 0.5;
+smallBlueBall[5].xStart = smallBlueBall[5].xStart + 0.5;
+smallBlueBall[5].yStart = smallBlueBall[5].yStart + 0.5;
+smallBlueBall[7].yStart = smallBlueBall[7].yStart + 0.5;
+smallBlueBall[1].yStop = smallBlueBall[1].yStop + 0.5;
+smallBlueBall[3].yStop = smallBlueBall[3].yStop + 1;
+smallBlueBall[5].yStop = smallBlueBall[5].yStop - 0.5;
 
-function rClosest (R) {
-  return R * Math.sqrt(2 - Math.sqrt(2)) / 2;
-}
-function rMiddle(R) {
-  return R / Math.sqrt(2);
-}
-function rFurther(R) {
-  return R * Math.sqrt(2 + Math.sqrt(2)) / 2;
-}
+const rClosest = R => R * Math.sqrt(2 - Math.sqrt(2)) / 2;
+
+const rMiddle = R => R / Math.sqrt(2);
+
+const rFurther = R => R * Math.sqrt(2 + Math.sqrt(2)) / 2;
 
 function nextStep(i, xOval, yOval, rOval) {
-  // position of the ball
-  let x = smallBlueBall[i].xCurrent;
-  let y = smallBlueBall[i].yCurrent;
-  let step;
-  let position = distFromPoint(x, xOval, y, yOval);
-  let r1 = rClosest(rOval);
-  let r2 = rMiddle(rOval);
-  let r3 = rFurther(rOval);
+    // position of the ball
+    let x = smallBlueBall[i].xCurrent;
+    let y = smallBlueBall[i].yCurrent;
+    let step;
+    let position = distFromPoint(x, xOval, y, yOval);
+    let r1 = rClosest(rOval);
+    let r2 = rMiddle(rOval);
+    let r3 = rFurther(rOval);
 
-  if (position > r3) {
-    step = (rOval - r3)/10 * smallBlueBall[i].iDirection;
-    return step;
-  }
-  if (position > r2) {
-    step = (r3 - r2)/10 * smallBlueBall[i].iDirection;
-    return step;
-  }
-  if (position > r1) {
+    if (position > r3) {
+        step = (rOval - r3) / 10 * smallBlueBall[i].iDirection;
+        return step;
+    }
+    if (position > r2) {
+        step = (r3 - r2) / 10 * smallBlueBall[i].iDirection;
+        return step;
+    }
+    if (position > r1) {
     step = (r2 - r1)/10 * smallBlueBall[i].iDirection;
     return step;
   }
@@ -142,6 +138,4 @@ function isLastStep(step, i, rOval) {
     return r > rOval * 2;
 }
 
-function distFromPoint(x1, x2, y1, y2) {
-  return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
-}
+const distFromPoint = (x1, x2, y1, y2) => Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);

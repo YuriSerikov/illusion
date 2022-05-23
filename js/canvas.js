@@ -46,7 +46,6 @@ function actionStart() {
 
 async function drawAnimation() {
   let t = 0;
-  let str = "";
 
   if (buttonStart.innerText === innerText1) {
     smallBlueBall[0].iTime2Go = 0;
@@ -173,11 +172,9 @@ function actionStop() {
   buttonStart.disabled = false;
 }
 
-function changeInnerText(Text1, Text2) {
+function changeInnerText(text1, text2) {
   extCircle.cycleNum = 0;
-  if (buttonStart.innerText === Text1) {
-    return Text2;
-  } else {
-    return Text1;
-  }
+  let innerText = buttonStart.innerText;
+  (innerText === text1) ? innerText = text2 : innerText = text1;
+  return innerText;
 }
