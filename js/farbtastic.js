@@ -468,11 +468,11 @@ $._farbtastic = function (container, options) {
   };
 
   fb.hueToRGB = (m1, m2, h) => {
-    h = (h + 1) % 1;
-    if (h * 6 < 1) return m1 + (m2 - m1) * h * 6;
-    if (h * 2 < 1) return m2;
-    if (h * 3 < 2) return m1 + (m2 - m1) * (0.66666 - h) * 6;
-    return m1;
+      let h1 = (h + 1) % 1;
+      if (h1 * 6 < 1) return m1 + (m2 - m1) * h1 * 6;
+      if (h1 * 2 < 1) return m2;
+      if (h1 * 3 < 2) return m1 + (m2 - m1) * (0.66666 - h1) * 6;
+      return m1;
   };
 
   fb.RGBToHSL = (rgb) => {

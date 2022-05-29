@@ -36,16 +36,16 @@ body {
   margin: 10px 20px;
 }
 #color1 {
-  border: none;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 40px;
-  font-weight: bold;
-  width: 200px;
-  margin: 20px 20px 0 30px;
-  padding: 20px 10px 20px 10px;
-  box-shadow: 3px 3px 10px darkgray;
-  text-shadow: 2px 1px #090d18;
-  text-align: center;
+    border: none;
+    font-family: Courier New, Courier, serif;
+    font-size: 40px;
+    font-weight: bold;
+    width: 200px;
+    margin: 20px 20px 0 30px;
+    padding: 20px 10px 20px 10px;
+    box-shadow: 3px 3px 10px darkgray;
+    text-shadow: 2px 1px #090d18;
+    text-align: center;
 }
 
 #colorSliders {
