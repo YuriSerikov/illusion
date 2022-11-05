@@ -11,8 +11,8 @@ const rBigOvl = xBigOvl - space; // радиус большого круга
 const rSmallBlue = 10; // радиус маленького синего шара
 const color1 = 'PowderBlue';
 const delayFrame = 30;
-const innerText1 ='Start Cycle';
-const innerText2 ='Start All';
+const innerText1 ='Старт';
+const innerText2 ='Старт общий';
 const extCircle = {
   xCenter: xBigOvl,
   yCenter: yBigOvl,
